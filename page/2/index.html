@@ -223,6 +223,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-修改npm源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/04/修改npm源/">修改npm源</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/04/修改npm源/" class="archive-article-date">
+  	<time datetime="2017-12-04T09:05:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>修改npm源镜像为淘宝镜像</p>
+<p>发布自己的包时要还原为官方源</p>
+<h3 id="修改为淘宝源"><a href="#修改为淘宝源" class="headerlink" title="修改为淘宝源"></a>修改为淘宝源</h3><pre><code>npm config set registry http://registry.npm.taobao.org/
+</code></pre><h3 id="修改为官方源"><a href="#修改为官方源" class="headerlink" title="修改为官方源"></a>修改为官方源</h3><pre><code>npm config set registry https://registry.npmjs.org/
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">笔记本本</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/04/修改npm源/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-跨域访问中的withCredentials" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1943,130 +2020,6 @@ systemctl start rsyslog.service
 
 
   
-    <article id="post-https发送post请求以及nodejs处理post" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/14/https发送post请求以及nodejs处理post/">https发送post请求以及nodejs处理post</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/14/https发送post请求以及nodejs处理post/" class="archive-article-date">
-  	<time datetime="2017-09-14T05:45:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="客户端发送post请求："><a href="#客户端发送post请求：" class="headerlink" title="客户端发送post请求："></a>客户端发送post请求：</h3><pre><code>sendPost: function(){
-            var querystring = require(&apos;querystring&apos;);
-            var httpRequest;
-
-            var bodyString = {
-                name: &apos;me&apos;,
-                id: 2223,
-                password: &apos;indinf&apos;
-            };
-
-            var postStr = querystring.stringify(bodyString);
-
-            httpRequest = new XMLHttpRequest();
-            if(!httpRequest) {
-                alert(&apos;这里有一点错误！&apos;);
-                return false;
-            }
-            httpRequest.onreadystatechange = function(){
-                if(httpRequest.readyState === XMLHttpRequest.DONE){
-                    if(httpRequest.status === 200) {
-                        alert(httpRequest.responseText);
-                    }else{
-                        alert(&apos;呀！网络错误！&apos;);
-                    }
-                }
-            };
-
-            httpRequest.open(&apos;POST&apos;,&apos;https://example.com/&apos;);
-            httpRequest.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
-            httpRequest.send(postStr);
-}
-</code></pre><h3 id="Node-js端接收处理post请求"><a href="#Node-js端接收处理post请求" class="headerlink" title="Node.js端接收处理post请求"></a>Node.js端接收处理post请求</h3><pre><code>const https = require(&apos;https&apos;);
-const fs = require(&apos;fs&apos;);
-
-const options = {
-    key: fs.readFileSync(&apos;key/example.key&apos;), //这里是你的key和证书的位置
-    cert: fs.readFileSync(&apos;key/example.crt&apos;)
-};
-
-https.createServer(options,(req, res) =&gt; {
-res.setHeader(&apos;Access-Control-Allow-Origin&apos;,&apos;*&apos;);
-
-if(req.method == &apos;POST&apos;) {
-    console.log(&quot;POST&quot;);
-    var body = &quot;&quot;;
-    req.on(&apos;data&apos;, function(data) {
-        body += data;
-    })
-    req.on(&apos;end&apos;, function(){
-        console.log(body);
-    })
-    res.writeHead(200,{&apos;Content-Type&apos;: &apos;text/html&apos;});
-    res.end(&apos;post received&apos;);
-}else{
-    console.log(&apos;GET&apos;);
-    res.writeHead(200,{&apos;Content-Type&apos;:&apos;text/html&apos;});
-    res.end(&apos;hello&apos;);
-}
-
-}).listen(2323);
-
-console.log(&apos;Server running at https://www.example.cn:2323/&apos;);
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/14/https发送post请求以及nodejs处理post/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -2176,15 +2129,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端 分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">前端 分享</a>
               </li>
             
             <div class="clearfix"></div>
