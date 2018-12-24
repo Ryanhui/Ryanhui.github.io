@@ -223,6 +223,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-javascript-迭代方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/20/javascript-迭代方法/">javascript 迭代方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/20/javascript-迭代方法/" class="archive-article-date">
+  	<time datetime="2017-09-20T02:10:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="ES5中定义了5种迭代方法："><a href="#ES5中定义了5种迭代方法：" class="headerlink" title="ES5中定义了5种迭代方法："></a>ES5中定义了5种迭代方法：</h4><p>every() filter() forEach() map() some()</p>
+<p>每个方法都接受两个参数：要在每一项上运行的函数和（可选）运行该函数的作用域对象（影响this的值）。</p>
+<p>传入这些方法中的函数接受三个参数：数组项的值、该项在数组中的位置、数组对象本身。</p>
+<p>every():对数组中的每一项运行函数，如果每一项都反回true，则返回true。</p>
+<p>filter()：对数组中的每一项运行函数，返回该函数会返回true的项组成的数组。</p>
+<p>forEach(): 对数组中的每一项运行函数，无返回。</p>
+<p>map(): 对数组中的每一项运行函数，返回每次函数调用结果组成的数组。</p>
+<p>some():对数组中的每一项运行函数，如果该函数对人一项返回true，则返回true。</p>
+<p>以上方法都不会修改数组中包含的值。</p>
+<h3 id="for-of是ES6中的新语法，用来配合迭代器。"><a href="#for-of是ES6中的新语法，用来配合迭代器。" class="headerlink" title="for-of是ES6中的新语法，用来配合迭代器。"></a>for-of是ES6中的新语法，用来配合迭代器。</h3><pre><code>for (var key of table) {
+      console.log(key + &apos; = &apos; + table[key]);
+ }
+</code></pre><h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><pre><code>table[Symbol.iterator] = function () {
+      var keys = Object.keys(this).sort();
+      var index = 0;
+
+      return {
+        next: function () {
+              return {
+                value: keys[index], done: index++ &gt;= keys.length
+                  };
+            }
+          }
+    }
+</code></pre><p>其实并不是很懂2333</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/20/javascript-迭代方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-常用命令记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -992,6 +1079,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端 分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -1000,7 +1091,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">前端 分享</a>
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
               </li>
             
             <div class="clearfix"></div>
