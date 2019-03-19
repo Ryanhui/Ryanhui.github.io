@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>搬运一些ES6内容，以及在ES5中的写法 | 惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +15,8 @@
 <meta property="og:url" content="https://www.ryansky.cn/2017/10/13/搬运一些es6内容，以及在es5中的写法/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="作用域不可变变量 只可以使变量本身不可以写，并非它分配的内容，比如如果内容是一个对象，意味着对象依然可以修改。  ES 5 const PI = 3.141593 PI &amp;gt; 3.0 ES 6 Object.defineProperty(typeof global === &amp;quot;object&amp;quot; ?     global : window, &amp;quot;PI&amp;quot;, {">
-<meta property="og:updated_time" content="2018-08-21T00:43:30.235Z">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-19T02:16:43.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搬运一些ES6内容，以及在ES5中的写法">
 <meta name="twitter:description" content="作用域不可变变量 只可以使变量本身不可以写，并非它分配的内容，比如如果内容是一个对象，意味着对象依然可以修改。  ES 5 const PI = 3.141593 PI &amp;gt; 3.0 ES 6 Object.defineProperty(typeof global === &amp;quot;object&amp;quot; ?     global : window, &amp;quot;PI&amp;quot;, {">
@@ -37,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -99,7 +100,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -1337,7 +1338,7 @@ console.log(&quot;success: foo=&quot; + foo + &quot; bar=&quot; + bar + &quot; b
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -1423,6 +1424,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -1441,17 +1446,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

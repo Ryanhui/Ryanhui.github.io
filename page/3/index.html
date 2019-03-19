@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,6 +14,7 @@
 <meta property="og:url" content="https://www.ryansky.cn/page/3/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="你相信平行宇宙吗，你是否也期待和另一个世界的自己相遇。">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="惠哲哲的博客">
 <meta name="twitter:description" content="你相信平行宇宙吗，你是否也期待和另一个世界的自己相遇。">
@@ -35,7 +36,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -97,7 +98,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -222,6 +223,114 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-CSS3媒体查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/25/CSS3媒体查询/">CSS3媒体查询</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/25/CSS3媒体查询/" class="archive-article-date">
+  	<time datetime="2017-09-25T04:19:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CSS2的-media-规则使得为不同媒体类型定义不同的样式规则成为可能。"><a href="#CSS2的-media-规则使得为不同媒体类型定义不同的样式规则成为可能。" class="headerlink" title="CSS2的 @media 规则使得为不同媒体类型定义不同的样式规则成为可能。"></a>CSS2的 @media 规则使得为不同媒体类型定义不同的样式规则成为可能。</h3><p>比如你可以用一套样式规则，一个适配电脑屏幕，一个适配打印机，一个适配手机，等等。</p>
+<h3 id="CSS3中的媒体查询延伸了CSS2中的媒体类型的想法：-不是查看设备类型，而是查看设备特性。"><a href="#CSS3中的媒体查询延伸了CSS2中的媒体类型的想法：-不是查看设备类型，而是查看设备特性。" class="headerlink" title="CSS3中的媒体查询延伸了CSS2中的媒体类型的想法： 不是查看设备类型，而是查看设备特性。"></a>CSS3中的媒体查询延伸了CSS2中的媒体类型的想法： 不是查看设备类型，而是查看设备特性。</h3><p>媒体查询可以用来检查很多东西，比如：</p>
+<ul>
+<li>视窗的宽高</li>
+<li>设备的宽高（屏幕）</li>
+<li>方向（纵向模式还是横向模式）</li>
+<li>分辨率</li>
+</ul>
+<p>使用媒体查询是为桌面设备，苹果和安卓适配不同样式的流行做法。</p>
+<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><p>一个媒体查询包含一个媒体类型和一个或多个判断真假的表达式。</p>
+<pre><code>@media not|only mediatype and (expressions) {
+        CSS-Code;
+}
+</code></pre><p>如果指定的媒体类型和设备正在显示的相同而且所有表达式为真，那么查询结果就是为真。</p>
+<p>你可以为不同的媒体设置不同的样式表：</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; media=&quot;mediatype and|not|only (expressions)&quot; href=&quot;print.css&quot;&gt;
+</code></pre><h3 id="媒体类型："><a href="#媒体类型：" class="headerlink" title="媒体类型："></a>媒体类型：</h3><ul>
+<li>all ：用于所有媒体设备</li>
+<li>pring： 用于打印机</li>
+<li>screen： 用于电脑屏幕，平板，智能手机等</li>
+<li>speech： 用于屏幕阅读器</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>使用媒体查询的一种方法是在样式表中插入备用的CSS内容</p>
+<p>下面这个例子如果视窗大于480px，背景颜色就会变成lightgreen</p>
+<pre><code>@media screen and (min-width: 480px) {
+body {
+          background-color: lightgreen;
+        }
+}
+</code></pre><p>下面这个例子，如果视窗大于等于480px，菜单就会做浮动</p>
+<pre><code>@media screen and (min-width: 480px) {
+    #leftsidebar {width: 200px; float: left;}
+    #main {margin-left:216px;}
+}
+</code></pre><p>Done.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/25/CSS3媒体查询/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-javascript-迭代方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -985,7 +1094,7 @@ nvm install stable
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -1071,6 +1180,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -1089,17 +1202,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

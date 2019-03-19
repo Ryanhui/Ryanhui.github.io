@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,6 +14,7 @@
 <meta property="og:url" content="https://www.ryansky.cn/page/2/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="你相信平行宇宙吗，你是否也期待和另一个世界的自己相遇。">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="惠哲哲的博客">
 <meta name="twitter:description" content="你相信平行宇宙吗，你是否也期待和另一个世界的自己相遇。">
@@ -35,7 +36,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -97,7 +98,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -223,6 +224,150 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JS弹球小游戏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/01/JS弹球小游戏/">JS弹球小游戏</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/01/JS弹球小游戏/" class="archive-article-date">
+  	<time datetime="2018-02-01T02:52:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不知道你有没有玩过这个打砖块的游戏，我模糊记得是在Windows 98上自带的游戏。</p>
+<p>在当时的我看来，画面极其科幻，游戏效果无与伦比。</p>
+<p>不过我谷歌了一圈也没发现与记忆里一模一样的画面，只找到了这个类似的游戏。</p>
+<p><img src="http://ww1.sinaimg.cn/large/6535481cly1fo0xe3iloqj20go09eteh.jpg" alt="image"></p>
+<p>想想那时一个弹球游戏就能玩上整整一天，守着大屁股的显示器，几个伙伴轮流操作，真是让人怀念的年代。</p>
+<p>只是当时太过年幼，不知这是何种难得的幸福。</p>
+<p>技术发展的脚步飞快，JavaScript似乎已经无所不能，索性就实现了一个类似的小游戏。</p>
+<p>虽然物理部分简单，但是既然已有非常完善的物理引擎，何不站在巨人的肩头呢？</p>
+<h2 id="matter-js"><a href="#matter-js" class="headerlink" title="matter.js"></a><a href="http://brm.io/matter-js/docs/index.html" target="_blank" rel="noopener">matter.js</a></h2><p>一个用JavaScript编写的2D刚体物理引擎。</p>
+<p>在引擎中添加世界，在世界中添加物体，启动引擎，一切就动了起来，是不是让人兴奋？</p>
+<p>可以添加多个世界，可以添加多个物体，物体可以组合，可以添加事件，可以使用自己的渲染器，可以添加插件，全部随心所欲。</p>
+<p><a href="http://brm.io/matter-js/demo/#airFriction" target="_blank" rel="noopener">这里是官方demo</a></p>
+<p>同所有的引擎一样，在使用前要了解一下概念，比如engine，即引擎。引擎控制着对世界的模拟更新。或者composite，即合成，是物体的集合。一个世界就是一个composite体。等等。</p>
+<p>介绍完了matter.js引擎，下面是游戏部分。</p>
+<p>为了让游戏变得更有意思一点，我让球球每隔一段时间随机改变方向和速度，带来出其不意的惊喜。</p>
+<p><a href="http://www.boxgame.top/pinball/" target="_blank" rel="noopener">游戏demo</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/6535481cly1fo0xekjv13j21e60p1dgm.jpg" alt></p>
+<p>关键</p>
+<p>为了让球球持续运动，要使摩擦力，空气摩擦力，静摩擦力设置为0，为了能更好的反弹，要设置restitution（恢复力？）为1，同时密度要合适。</p>
+<p>为球体设置的属性这样：</p>
+<pre><code>density: 0.001,
+friction: 0,
+frictionStatic: 0,
+frictionAir: 0,
+restitution: 1
+</code></pre><p>墙体等属性主要是isStatic为true即可，目的是固定在空间上，否则会无限掉落。</p>
+<p>对于碰撞事件，我们要进行监听，实现消失，改变颜色，播放音效的功能。</p>
+<pre><code>/* 监控碰撞中事件 */
+ Events.on(engine, &apos;collisionActive&apos;, function(event) {
+    let pairs = event.pairs;
+
+    for(let i = 0; i &lt; pairs.length; i++) {
+        let pair = pairs[i];
+        pair.bodyA.render.fillStyle = &apos;#42f4b6&apos;;
+        pair.bodyB.render.fillStyle = &apos;#41d9f4&apos;;
+    }
+
+    playSound();
+});
+</code></pre><p>操作物体可以在帧前或者帧后，这样才会从下一帧开始应用改变。</p>
+<pre><code>Events.on(engine, &apos;beforeUpdate&apos;, beforeUpdateEvent);
+
+function beforeUpdateEvent(event) {
+/* 球球的位置 */
+var position = ball.position;
+
+if(event.timestamp % 5100 &lt; 50 &amp;&amp; isMovingBall){
+
+    var positionX = position.x,
+        positionY = position.y;
+
+    /* 如果球球的速度小于13，给球球加速 */
+    if(ball.speed &lt; 20) {
+        Body.applyForce(ball, {x: positionX, y: positionY}, {x:  Math.random()/100, y: -Math.random()/100}); 
+        console.log(&apos;speed up&apos;);
+    }
+}
+
+/* 球离开区域，游戏失败 */
+if(position.y &gt;= 900) {
+        isMovingBall = false;
+        isOver = true;
+        Composite.remove(world, [box, ball]);
+        Events.off(engine, &apos;afterUpdate&apos;, afterUpdateEvent);
+        Events.off(engine, &apos;beforeUpdate&apos;, beforeUpdateEvent);
+          cover.style.backgroundColor = &apos;rgba(0,0,0,0.7)&apos;;
+    }
+}
+</code></pre><p>每次游戏结束为了让物体回归原位，从世界移除物体及监听的事件，重新添加。</p>
+<p>这样就完成了一个弹球小游戏。</p>
+<p>以上</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/01/JS弹球小游戏/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-什么是科学" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -244,7 +389,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这是一篇1966年纽约举办的国际科学教师协会15周年大会上的演讲。在我看来，这边文章更多是阐述要批判的对待科学，虽然发表距今已经有五十多年，科学一直在不断进步。但是敢于挑战权威的核心思想却丝毫没有过时，并且我认为这种思维应该伴随科学的发展保留下去。科学不会教给我们什么，那些复杂难懂的定义毫无意义，只有经验才能告诉你一切。不仅是纯粹的科学，任何需要通过继承而发展的东西不都是如此吗？</p>
-<p><a href="http://www.fotuva.org/feynman/what_is_science.html" target="_blank" rel="external">原文章地址</a></p>
+<p><a href="http://www.fotuva.org/feynman/what_is_science.html" target="_blank" rel="noopener">原文章地址</a></p>
 <h3 id="What-is-Science"><a href="#What-is-Science" class="headerlink" title="What is Science?"></a>What is Science?</h3><p>Presented at the fifteenth annual meeting of the National Science Teachers Association, 1966 in New York City, and reprinted from The Physics Teacher Vol. 7, issue 6, 1969, pp. 313-320 by permission of the editor and the author. [Words and symbols in brackets added by Ralph Leighton.]</p>
 <p>I thank Mr. DeRose for the opportunity to join you science teachers. I also am a science teacher. I have much experience only in teaching graduate students in physics, and as a result of the experience I know that I don’t know how to teach.</p>
 <p>I am sure that you who are real teachers working at the bottom level of this hierarchy of teachers, instructors of teachers, experts on curricula, also are sure that you, too, don’t know how to do it; otherwise you wouldn’t bother to come to the convention.</p>
@@ -444,7 +589,7 @@
 <li>git pull</li>
 <li>git push</li>
 </ol>
-<p><a href="https://www.jianshu.com/p/6f3324e4f335" target="_blank" rel="external">转载地址及详细内容</a></p>
+<p><a href="https://www.jianshu.com/p/6f3324e4f335" target="_blank" rel="noopener">转载地址及详细内容</a></p>
 
       
 
@@ -2024,114 +2169,6 @@ while(j &gt;= 0 &amp;&amp; arr[j] &gt; key){
 
 
   
-    <article id="post-CSS3媒体查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/CSS3媒体查询/">CSS3媒体查询</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/CSS3媒体查询/" class="archive-article-date">
-  	<time datetime="2017-09-25T04:19:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="CSS2的-media-规则使得为不同媒体类型定义不同的样式规则成为可能。"><a href="#CSS2的-media-规则使得为不同媒体类型定义不同的样式规则成为可能。" class="headerlink" title="CSS2的 @media 规则使得为不同媒体类型定义不同的样式规则成为可能。"></a>CSS2的 @media 规则使得为不同媒体类型定义不同的样式规则成为可能。</h3><p>比如你可以用一套样式规则，一个适配电脑屏幕，一个适配打印机，一个适配手机，等等。</p>
-<h3 id="CSS3中的媒体查询延伸了CSS2中的媒体类型的想法：-不是查看设备类型，而是查看设备特性。"><a href="#CSS3中的媒体查询延伸了CSS2中的媒体类型的想法：-不是查看设备类型，而是查看设备特性。" class="headerlink" title="CSS3中的媒体查询延伸了CSS2中的媒体类型的想法： 不是查看设备类型，而是查看设备特性。"></a>CSS3中的媒体查询延伸了CSS2中的媒体类型的想法： 不是查看设备类型，而是查看设备特性。</h3><p>媒体查询可以用来检查很多东西，比如：</p>
-<ul>
-<li>视窗的宽高</li>
-<li>设备的宽高（屏幕）</li>
-<li>方向（纵向模式还是横向模式）</li>
-<li>分辨率</li>
-</ul>
-<p>使用媒体查询是为桌面设备，苹果和安卓适配不同样式的流行做法。</p>
-<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><p>一个媒体查询包含一个媒体类型和一个或多个判断真假的表达式。</p>
-<pre><code>@media not|only mediatype and (expressions) {
-        CSS-Code;
-}
-</code></pre><p>如果指定的媒体类型和设备正在显示的相同而且所有表达式为真，那么查询结果就是为真。</p>
-<p>你可以为不同的媒体设置不同的样式表：</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; media=&quot;mediatype and|not|only (expressions)&quot; href=&quot;print.css&quot;&gt;
-</code></pre><h3 id="媒体类型："><a href="#媒体类型：" class="headerlink" title="媒体类型："></a>媒体类型：</h3><ul>
-<li>all ：用于所有媒体设备</li>
-<li>pring： 用于打印机</li>
-<li>screen： 用于电脑屏幕，平板，智能手机等</li>
-<li>speech： 用于屏幕阅读器</li>
-</ul>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>使用媒体查询的一种方法是在样式表中插入备用的CSS内容</p>
-<p>下面这个例子如果视窗大于480px，背景颜色就会变成lightgreen</p>
-<pre><code>@media screen and (min-width: 480px) {
-body {
-          background-color: lightgreen;
-        }
-}
-</code></pre><p>下面这个例子，如果视窗大于等于480px，菜单就会做浮动</p>
-<pre><code>@media screen and (min-width: 480px) {
-    #leftsidebar {width: 200px; float: left;}
-    #main {margin-left:216px;}
-}
-</code></pre><p>Done.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/CSS3媒体查询/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -2147,7 +2184,7 @@ body {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -2233,6 +2270,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -2251,17 +2292,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

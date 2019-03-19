@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>javascript 获取内外Ip | 惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +15,8 @@
 <meta property="og:url" content="https://www.ryansky.cn/2018/10/09/javascript-获取内外Ip/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="此方法不支持IE 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** * Get the user IP throught the webkitRTCPeerConnection * @param onNewIP &amp;#123;Function&amp;#125; listene">
-<meta property="og:updated_time" content="2018-10-09T07:01:03.424Z">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-19T02:16:43.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript 获取内外Ip">
 <meta name="twitter:description" content="此方法不支持IE 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** * Get the user IP throught the webkitRTCPeerConnection * @param onNewIP &amp;#123;Function&amp;#125; listene">
@@ -37,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -99,7 +100,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -244,8 +245,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>此方法不支持IE</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Get the user IP throught the webkitRTCPeerConnection</span></div><div class="line"><span class="comment"> * @param onNewIP &#123;Function&#125; listener function to expose the IP locally</span></div><div class="line"><span class="comment"> * @return undefined</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserIP</span>(<span class="params">onNewIP</span>) </span>&#123; <span class="comment">//  onNewIp - your listener function for new IPs</span></div><div class="line">    <span class="comment">//compatibility for firefox and chrome</span></div><div class="line">    <span class="keyword">var</span> myPeerConnection = <span class="built_in">window</span>.RTCPeerConnection || <span class="built_in">window</span>.mozRTCPeerConnection || <span class="built_in">window</span>.webkitRTCPeerConnection;</div><div class="line">    <span class="keyword">var</span> pc = <span class="keyword">new</span> myPeerConnection(&#123;</div><div class="line">        iceServers: []</div><div class="line">    &#125;),</div><div class="line">    noop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">    localIPs = &#123;&#125;,</div><div class="line">    ipRegex = <span class="regexp">/([0-9]&#123;1,3&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;|[a-f0-9]&#123;1,4&#125;(:[a-f0-9]&#123;1,4&#125;)&#123;7&#125;)/g</span>,</div><div class="line">    key;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">iterateIP</span>(<span class="params">ip</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!localIPs[ip]) onNewIP(ip);</div><div class="line">        localIPs[ip] = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">     <span class="comment">//create a bogus data channel</span></div><div class="line">    pc.createDataChannel(<span class="string">""</span>);</div><div class="line"></div><div class="line">    <span class="comment">// create offer and set local description</span></div><div class="line">    pc.createOffer().then(<span class="function"><span class="keyword">function</span>(<span class="params">sdp</span>) </span>&#123;</div><div class="line">        sdp.sdp.split(<span class="string">'\n'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">line</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (line.indexOf(<span class="string">'candidate'</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">            line.match(ipRegex).forEach(iterateIP);</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        pc.setLocalDescription(sdp, noop, noop);</div><div class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</div><div class="line">        <span class="comment">// An error occurred, so handle the failure to connect</span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">//listen for candidate events</span></div><div class="line">    pc.onicecandidate = <span class="function"><span class="keyword">function</span>(<span class="params">ice</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) <span class="keyword">return</span>;</div><div class="line">        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line"></div><div class="line">getUserIP(<span class="function"><span class="keyword">function</span>(<span class="params">ip</span>)</span>&#123;</div><div class="line">    alert(<span class="string">"Got IP! :"</span> + ip);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><a href="https://ourcodeworld.com/articles/read/257/how-to-get-the-client-ip-address-with-javascript-only" target="_blank" rel="external">参考</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get the user IP throught the webkitRTCPeerConnection</span></span><br><span class="line"><span class="comment"> * @param onNewIP &#123;Function&#125; listener function to expose the IP locally</span></span><br><span class="line"><span class="comment"> * @return undefined</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserIP</span>(<span class="params">onNewIP</span>) </span>&#123; <span class="comment">//  onNewIp - your listener function for new IPs</span></span><br><span class="line">    <span class="comment">//compatibility for firefox and chrome</span></span><br><span class="line">    <span class="keyword">var</span> myPeerConnection = <span class="built_in">window</span>.RTCPeerConnection || <span class="built_in">window</span>.mozRTCPeerConnection || <span class="built_in">window</span>.webkitRTCPeerConnection;</span><br><span class="line">    <span class="keyword">var</span> pc = <span class="keyword">new</span> myPeerConnection(&#123;</span><br><span class="line">        iceServers: []</span><br><span class="line">    &#125;),</span><br><span class="line">    noop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    localIPs = &#123;&#125;,</span><br><span class="line">    ipRegex = <span class="regexp">/([0-9]&#123;1,3&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;|[a-f0-9]&#123;1,4&#125;(:[a-f0-9]&#123;1,4&#125;)&#123;7&#125;)/g</span>,</span><br><span class="line">    key;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">iterateIP</span>(<span class="params">ip</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!localIPs[ip]) onNewIP(ip);</span><br><span class="line">        localIPs[ip] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//create a bogus data channel</span></span><br><span class="line">    pc.createDataChannel(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create offer and set local description</span></span><br><span class="line">    pc.createOffer().then(<span class="function"><span class="keyword">function</span>(<span class="params">sdp</span>) </span>&#123;</span><br><span class="line">        sdp.sdp.split(<span class="string">'\n'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">line</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (line.indexOf(<span class="string">'candidate'</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">            line.match(ipRegex).forEach(iterateIP);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        pc.setLocalDescription(sdp, noop, noop);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// An error occurred, so handle the failure to connect</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//listen for candidate events</span></span><br><span class="line">    pc.onicecandidate = <span class="function"><span class="keyword">function</span>(<span class="params">ice</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) <span class="keyword">return</span>;</span><br><span class="line">        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line"></span><br><span class="line">getUserIP(<span class="function"><span class="keyword">function</span>(<span class="params">ip</span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Got IP! :"</span> + ip);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="https://ourcodeworld.com/articles/read/257/how-to-get-the-client-ip-address-with-javascript-only" target="_blank" rel="noopener">参考</a></p>
 
       
 
@@ -421,7 +422,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -507,6 +508,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -525,17 +530,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

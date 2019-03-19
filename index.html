@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,6 +14,7 @@
 <meta property="og:url" content="https://www.ryansky.cn/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="你相信平行宇宙吗，你是否也期待和另一个世界的自己相遇。">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="惠哲哲的博客">
 <meta name="twitter:description" content="你相信平行宇宙吗，你是否也期待和另一个世界的自己相遇。">
@@ -35,7 +36,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -97,7 +98,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -223,6 +224,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-如何为-React-项目配置-ESlint" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/19/如何为-React-项目配置-ESlint/">如何为 React 项目配置 ESlint</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/19/如何为-React-项目配置-ESlint/" class="archive-article-date">
+  	<time datetime="2019-03-19T02:24:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>在项目根目录 （package.json）在的位置，执行以下命令：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx install-peerdeps --dev eslint-config-airbnb</span><br></pre></td></tr></table></figure>
+<p> 如上命令会安装 ESlint 和其他依赖</p>
+</li>
+<li><p>同样继续在项目根目录执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-eslint --dev-save</span><br></pre></td></tr></table></figure>
+<p>由于 eslint-config-airbnb 对 JSX 支持不全，所以需要 babel-eslint 补充</p>
+</li>
+<li><p>初始化 ESlint ，继续在根目录执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --init</span><br></pre></td></tr></table></figure>
+<p>之后会有一些配置选项，根据需要选择即可</p>
+</li>
+<li><p>完成后，根目录会出现 .eslintrc.js 文件，编辑此文件</p>
+<p>主要 添加如下两行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;extends&quot;: &quot;airbnb&quot;,</span><br><span class="line">&quot;parser&quot;: &quot;babel-eslint&quot;,</span><br></pre></td></tr></table></figure>
+<p>可以参考以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line"> &quot;env&quot;: &#123;</span><br><span class="line">     &quot;browser&quot;: true,</span><br><span class="line">     &quot;es6&quot;: true</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;extends&quot;: &quot;airbnb&quot;,</span><br><span class="line"> &quot;globals&quot;: &#123;</span><br><span class="line">     &quot;Atomics&quot;: &quot;readonly&quot;,</span><br><span class="line">     &quot;SharedArrayBuffer&quot;: &quot;readonly&quot;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;parser&quot;: &quot;babel-eslint&quot;,</span><br><span class="line"> &quot;parserOptions&quot;: &#123;</span><br><span class="line">     &quot;ecmaFeatures&quot;: &#123;</span><br><span class="line">         &quot;jsx&quot;: true</span><br><span class="line">     &#125;,</span><br><span class="line">     &quot;ecmaVersion&quot;: 2018,</span><br><span class="line">     &quot;sourceType&quot;: &quot;module&quot;</span><br><span class="line"> &#125;,</span><br><span class="line"> &quot;plugins&quot;: [</span><br><span class="line">     &quot;react&quot;</span><br><span class="line"> ],</span><br><span class="line"> &quot;rules&quot;: &#123;</span><br><span class="line">     &quot;react/jsx-filename-extension&quot;: [1, &#123; &quot;extensions&quot;: [&quot;.js&quot;, &quot;.jsx&quot;] &#125;],</span><br><span class="line"> &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><p>最后，在 vs code 设置中开启 eslint 相关功能。</p>
+<p>设置按钮 - setting - extensions - ESlint</p>
+<p>勾选 ESlint: auto Fix on save 以及 ESlint: enable</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/19/如何为-React-项目配置-ESlint/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-0-1-Knapsack-in-JavaScript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -244,7 +344,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>0/1背包问题的js实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// val =&gt; value</span></div><div class="line"><span class="comment">// wt =&gt; weight</span></div><div class="line"><span class="keyword">let</span> val = [<span class="number">-1</span>,<span class="number">100</span>,<span class="number">20</span>,<span class="number">60</span>,<span class="number">40</span>] </div><div class="line"><span class="keyword">let</span> wt = [<span class="number">-1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>] </div><div class="line"></div><div class="line"><span class="comment">// total capacity of the knapsack</span></div><div class="line"><span class="keyword">let</span> W = <span class="number">5</span>;</div><div class="line"></div><div class="line"><span class="comment">// total items</span></div><div class="line"><span class="keyword">let</span> n = <span class="number">4</span>;</div><div class="line"></div><div class="line"><span class="comment">// create two dimensional array </span></div><div class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(n+<span class="number">1</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</div><div class="line">	arr[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(W+<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// set first row and column to zero</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</div><div class="line">	arr[i][<span class="number">0</span>] = <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= W; i++ )&#123;</div><div class="line">	arr[<span class="number">0</span>][i] = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment">	if wt[i] &gt; w then</span></div><div class="line"><span class="comment">	V[i,w] = V[i-1,w]</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">	else if wt[i] &lt;= w then</span></div><div class="line"><span class="comment">	V[i,w] = max( V[i-1,w], val[i] + V[i-1, w - wt[i]] )</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> w = <span class="number">1</span>; w &lt;= W; w++) &#123;</div><div class="line">		<span class="keyword">if</span> (wt[i] &gt; w) &#123;</div><div class="line">			arr[i][w] = arr[i<span class="number">-1</span>][w];</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (wt[i] &lt;= w) &#123;</div><div class="line">			arr[i][w] = <span class="built_in">Math</span>.max(arr[i<span class="number">-1</span>][w], (arr[i<span class="number">-1</span>][w - wt[i]] + val[i]));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.table(arr)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// val =&gt; value</span></span><br><span class="line"><span class="comment">// wt =&gt; weight</span></span><br><span class="line"><span class="keyword">let</span> val = [<span class="number">-1</span>,<span class="number">100</span>,<span class="number">20</span>,<span class="number">60</span>,<span class="number">40</span>] </span><br><span class="line"><span class="keyword">let</span> wt = [<span class="number">-1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>] </span><br><span class="line"></span><br><span class="line"><span class="comment">// total capacity of the knapsack</span></span><br><span class="line"><span class="keyword">let</span> W = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// total items</span></span><br><span class="line"><span class="keyword">let</span> n = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create two dimensional array </span></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(n+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= n; i ++) &#123;</span><br><span class="line">	arr[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(W+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// set first row and column to zero</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line">	arr[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= W; i++ )&#123;</span><br><span class="line">	arr[<span class="number">0</span>][i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	if wt[i] &gt; w then</span></span><br><span class="line"><span class="comment">	V[i,w] = V[i-1,w]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	else if wt[i] &lt;= w then</span></span><br><span class="line"><span class="comment">	V[i,w] = max( V[i-1,w], val[i] + V[i-1, w - wt[i]] )</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> w = <span class="number">1</span>; w &lt;= W; w++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (wt[i] &gt; w) &#123;</span><br><span class="line">			arr[i][w] = arr[i<span class="number">-1</span>][w];</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (wt[i] &lt;= w) &#123;</span><br><span class="line">			arr[i][w] = <span class="built_in">Math</span>.max(arr[i<span class="number">-1</span>][w], (arr[i<span class="number">-1</span>][w - wt[i]] + val[i]));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.table(arr)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -319,8 +419,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>此方法不支持IE</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Get the user IP throught the webkitRTCPeerConnection</span></div><div class="line"><span class="comment"> * @param onNewIP &#123;Function&#125; listener function to expose the IP locally</span></div><div class="line"><span class="comment"> * @return undefined</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserIP</span>(<span class="params">onNewIP</span>) </span>&#123; <span class="comment">//  onNewIp - your listener function for new IPs</span></div><div class="line">    <span class="comment">//compatibility for firefox and chrome</span></div><div class="line">    <span class="keyword">var</span> myPeerConnection = <span class="built_in">window</span>.RTCPeerConnection || <span class="built_in">window</span>.mozRTCPeerConnection || <span class="built_in">window</span>.webkitRTCPeerConnection;</div><div class="line">    <span class="keyword">var</span> pc = <span class="keyword">new</span> myPeerConnection(&#123;</div><div class="line">        iceServers: []</div><div class="line">    &#125;),</div><div class="line">    noop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">    localIPs = &#123;&#125;,</div><div class="line">    ipRegex = <span class="regexp">/([0-9]&#123;1,3&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;|[a-f0-9]&#123;1,4&#125;(:[a-f0-9]&#123;1,4&#125;)&#123;7&#125;)/g</span>,</div><div class="line">    key;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">iterateIP</span>(<span class="params">ip</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!localIPs[ip]) onNewIP(ip);</div><div class="line">        localIPs[ip] = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">     <span class="comment">//create a bogus data channel</span></div><div class="line">    pc.createDataChannel(<span class="string">""</span>);</div><div class="line"></div><div class="line">    <span class="comment">// create offer and set local description</span></div><div class="line">    pc.createOffer().then(<span class="function"><span class="keyword">function</span>(<span class="params">sdp</span>) </span>&#123;</div><div class="line">        sdp.sdp.split(<span class="string">'\n'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">line</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (line.indexOf(<span class="string">'candidate'</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">            line.match(ipRegex).forEach(iterateIP);</div><div class="line">        &#125;);</div><div class="line">        </div><div class="line">        pc.setLocalDescription(sdp, noop, noop);</div><div class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</div><div class="line">        <span class="comment">// An error occurred, so handle the failure to connect</span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">//listen for candidate events</span></div><div class="line">    pc.onicecandidate = <span class="function"><span class="keyword">function</span>(<span class="params">ice</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) <span class="keyword">return</span>;</div><div class="line">        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Usage</span></div><div class="line"></div><div class="line">getUserIP(<span class="function"><span class="keyword">function</span>(<span class="params">ip</span>)</span>&#123;</div><div class="line">    alert(<span class="string">"Got IP! :"</span> + ip);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><a href="https://ourcodeworld.com/articles/read/257/how-to-get-the-client-ip-address-with-javascript-only" target="_blank" rel="external">参考</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get the user IP throught the webkitRTCPeerConnection</span></span><br><span class="line"><span class="comment"> * @param onNewIP &#123;Function&#125; listener function to expose the IP locally</span></span><br><span class="line"><span class="comment"> * @return undefined</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserIP</span>(<span class="params">onNewIP</span>) </span>&#123; <span class="comment">//  onNewIp - your listener function for new IPs</span></span><br><span class="line">    <span class="comment">//compatibility for firefox and chrome</span></span><br><span class="line">    <span class="keyword">var</span> myPeerConnection = <span class="built_in">window</span>.RTCPeerConnection || <span class="built_in">window</span>.mozRTCPeerConnection || <span class="built_in">window</span>.webkitRTCPeerConnection;</span><br><span class="line">    <span class="keyword">var</span> pc = <span class="keyword">new</span> myPeerConnection(&#123;</span><br><span class="line">        iceServers: []</span><br><span class="line">    &#125;),</span><br><span class="line">    noop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    localIPs = &#123;&#125;,</span><br><span class="line">    ipRegex = <span class="regexp">/([0-9]&#123;1,3&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;|[a-f0-9]&#123;1,4&#125;(:[a-f0-9]&#123;1,4&#125;)&#123;7&#125;)/g</span>,</span><br><span class="line">    key;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">iterateIP</span>(<span class="params">ip</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!localIPs[ip]) onNewIP(ip);</span><br><span class="line">        localIPs[ip] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//create a bogus data channel</span></span><br><span class="line">    pc.createDataChannel(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create offer and set local description</span></span><br><span class="line">    pc.createOffer().then(<span class="function"><span class="keyword">function</span>(<span class="params">sdp</span>) </span>&#123;</span><br><span class="line">        sdp.sdp.split(<span class="string">'\n'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">line</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (line.indexOf(<span class="string">'candidate'</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">            line.match(ipRegex).forEach(iterateIP);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        pc.setLocalDescription(sdp, noop, noop);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// An error occurred, so handle the failure to connect</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//listen for candidate events</span></span><br><span class="line">    pc.onicecandidate = <span class="function"><span class="keyword">function</span>(<span class="params">ice</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) <span class="keyword">return</span>;</span><br><span class="line">        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line"></span><br><span class="line">getUserIP(<span class="function"><span class="keyword">function</span>(<span class="params">ip</span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Got IP! :"</span> + ip);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="https://ourcodeworld.com/articles/read/257/how-to-get-the-client-ip-address-with-javascript-only" target="_blank" rel="noopener">参考</a></p>
 
       
 
@@ -401,34 +501,34 @@
 <p>:8000  Kong监听来自HTTP请求的端口，转发到上游服务。<br>:8443  Kong监听来自HTTPS请求的端口，除了只接受HTTPS请求外，其他行为和8000端口一致，这个端口可以在配置文件中禁用。<br>:8001  Kong的配置管理接口，即Admin API，通过访问此端口配置Kong。<br>:8444  Admin API 用来监听HTTPS请求的。</p>
 <p>理解8001端口尤为重要，在Kong中，所有的配置都是通过Get、Post、Patch等请求完成的。通过命令行的curl命令，或者postman等其他能发送http请求的工具将需要的配置信息按照Kong的API发送到8001端口即可更改配置，如添加服务，增加API，安装插件等操作。</p>
 <p>例如，一个添加服务的命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X POST \</div><div class="line">  --url http://localhost:8001/services/ \</div><div class="line">  --data <span class="string">'name=example-service'</span> \</div><div class="line">--data <span class="string">'url=http://mockbin.org'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X POST \</span><br><span class="line">  --url http://localhost:8001/services/ \</span><br><span class="line">  --data <span class="string">'name=example-service'</span> \</span><br><span class="line">--data <span class="string">'url=http://mockbin.org'</span></span><br></pre></td></tr></table></figure>
 <h4 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h4><p>这一节，我们要添加一个API到Kong上，为了实现这个目的，我们首先要添加一个服务名称，Kong用这个名称来指代它管理的上游API和微服务。</p>
-<h5 id="1-使用Admin-API-添加服务"><a href="#1-使用Admin-API-添加服务" class="headerlink" title="1.使用Admin API 添加服务"></a>1.使用Admin API 添加服务</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X POST \</div><div class="line">  --url http://localhost:8001/services/ \</div><div class="line">  --data <span class="string">'name=example-service'</span> \</div><div class="line">--data <span class="string">'url=http://mockbin.org'</span></div></pre></td></tr></table></figure>
+<h5 id="1-使用Admin-API-添加服务"><a href="#1-使用Admin-API-添加服务" class="headerlink" title="1.使用Admin API 添加服务"></a>1.使用Admin API 添加服务</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X POST \</span><br><span class="line">  --url http://localhost:8001/services/ \</span><br><span class="line">  --data <span class="string">'name=example-service'</span> \</span><br><span class="line">--data <span class="string">'url=http://mockbin.org'</span></span><br></pre></td></tr></table></figure>
 <p>如果命令正确，将会打印如下结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 201 Created</div><div class="line">Content-Type: application/json</div><div class="line">Connection: keep-alive</div><div class="line"></div><div class="line">&#123;</div><div class="line">   <span class="string">"host"</span>:<span class="string">"mockbin.org"</span>,</div><div class="line">   <span class="string">"created_at"</span>:1519130509,</div><div class="line">   <span class="string">"connect_timeout"</span>:60000,</div><div class="line">   <span class="string">"id"</span>:<span class="string">"92956672-f5ea-4e9a-b096-667bf55bc40c"</span>,</div><div class="line">   <span class="string">"protocol"</span>:<span class="string">"http"</span>,</div><div class="line">   <span class="string">"name"</span>:<span class="string">"example-service"</span>,</div><div class="line">   <span class="string">"read_timeout"</span>:60000,</div><div class="line">   <span class="string">"port"</span>:80,</div><div class="line">   <span class="string">"path"</span>:null,</div><div class="line">   <span class="string">"updated_at"</span>:1519130509,</div><div class="line">   <span class="string">"retries"</span>:5,</div><div class="line">   <span class="string">"write_timeout"</span>:60000</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 201 Created</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">   <span class="string">"host"</span>:<span class="string">"mockbin.org"</span>,</span><br><span class="line">   <span class="string">"created_at"</span>:1519130509,</span><br><span class="line">   <span class="string">"connect_timeout"</span>:60000,</span><br><span class="line">   <span class="string">"id"</span>:<span class="string">"92956672-f5ea-4e9a-b096-667bf55bc40c"</span>,</span><br><span class="line">   <span class="string">"protocol"</span>:<span class="string">"http"</span>,</span><br><span class="line">   <span class="string">"name"</span>:<span class="string">"example-service"</span>,</span><br><span class="line">   <span class="string">"read_timeout"</span>:60000,</span><br><span class="line">   <span class="string">"port"</span>:80,</span><br><span class="line">   <span class="string">"path"</span>:null,</span><br><span class="line">   <span class="string">"updated_at"</span>:1519130509,</span><br><span class="line">   <span class="string">"retries"</span>:5,</span><br><span class="line">   <span class="string">"write_timeout"</span>:60000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="2-为服务添加路由"><a href="#2-为服务添加路由" class="headerlink" title="2.为服务添加路由"></a>2.为服务添加路由</h5><p>hosts[]=example.com 代表来自example.com主机的请求会被转发到此路由。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X POST \</div><div class="line">  --url http://localhost:8001/services/example-service/routes \</div><div class="line">--data <span class="string">'hosts[]=example.com'</span></div></pre></td></tr></table></figure>
-<h5 id="如果命令正确，会打印如下结果"><a href="#如果命令正确，会打印如下结果" class="headerlink" title="如果命令正确，会打印如下结果"></a>如果命令正确，会打印如下结果</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 201 Created</div><div class="line">Content-Type: application/json</div><div class="line">Connection: keep-alive</div><div class="line"></div><div class="line">&#123;</div><div class="line">   <span class="string">"created_at"</span>:1519131139,</div><div class="line">   <span class="string">"strip_path"</span>:<span class="literal">true</span>,</div><div class="line">   <span class="string">"hosts"</span>:[</div><div class="line">      <span class="string">"example.com"</span></div><div class="line">   ],</div><div class="line">   <span class="string">"preserve_host"</span>:<span class="literal">false</span>,</div><div class="line">   <span class="string">"regex_priority"</span>:0,</div><div class="line">   <span class="string">"updated_at"</span>:1519131139,</div><div class="line">   <span class="string">"paths"</span>:null,</div><div class="line">   <span class="string">"service"</span>:&#123;</div><div class="line">      <span class="string">"id"</span>:<span class="string">"79d7ee6e-9fc7-4b95-aa3b-61d2e17e7516"</span></div><div class="line">   &#125;,</div><div class="line">   <span class="string">"methods"</span>:null,</div><div class="line">   <span class="string">"protocols"</span>:[</div><div class="line">      <span class="string">"http"</span>,</div><div class="line">      <span class="string">"https"</span></div><div class="line">   ],</div><div class="line">   <span class="string">"id"</span>:<span class="string">"f9ce2ed7-c06e-4e16-bd5d-3a82daef3f9d"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="3-测试请求是否被成功从Kong转发到上游服务"><a href="#3-测试请求是否被成功从Kong转发到上游服务" class="headerlink" title="3.测试请求是否被成功从Kong转发到上游服务"></a>3.测试请求是否被成功从Kong转发到上游服务</h5><p>以下命令模拟一个get请求到Kong，如果配置正确，Kong应该将请求转发到<a href="http://mockbin.org" target="_blank" rel="external">http://mockbin.org</a>，如果你还记得，这是我们在创建服务的时候指定的上游服务。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X GET \</div><div class="line">  --url http://localhost:8000/ \</div><div class="line">--header <span class="string">'Host: example.com'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X POST \</span><br><span class="line">  --url http://localhost:8001/services/example-service/routes \</span><br><span class="line">--data <span class="string">'hosts[]=example.com'</span></span><br></pre></td></tr></table></figure>
+<h5 id="如果命令正确，会打印如下结果"><a href="#如果命令正确，会打印如下结果" class="headerlink" title="如果命令正确，会打印如下结果"></a>如果命令正确，会打印如下结果</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 201 Created</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">   <span class="string">"created_at"</span>:1519131139,</span><br><span class="line">   <span class="string">"strip_path"</span>:<span class="literal">true</span>,</span><br><span class="line">   <span class="string">"hosts"</span>:[</span><br><span class="line">      <span class="string">"example.com"</span></span><br><span class="line">   ],</span><br><span class="line">   <span class="string">"preserve_host"</span>:<span class="literal">false</span>,</span><br><span class="line">   <span class="string">"regex_priority"</span>:0,</span><br><span class="line">   <span class="string">"updated_at"</span>:1519131139,</span><br><span class="line">   <span class="string">"paths"</span>:null,</span><br><span class="line">   <span class="string">"service"</span>:&#123;</span><br><span class="line">      <span class="string">"id"</span>:<span class="string">"79d7ee6e-9fc7-4b95-aa3b-61d2e17e7516"</span></span><br><span class="line">   &#125;,</span><br><span class="line">   <span class="string">"methods"</span>:null,</span><br><span class="line">   <span class="string">"protocols"</span>:[</span><br><span class="line">      <span class="string">"http"</span>,</span><br><span class="line">      <span class="string">"https"</span></span><br><span class="line">   ],</span><br><span class="line">   <span class="string">"id"</span>:<span class="string">"f9ce2ed7-c06e-4e16-bd5d-3a82daef3f9d"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-测试请求是否被成功从Kong转发到上游服务"><a href="#3-测试请求是否被成功从Kong转发到上游服务" class="headerlink" title="3.测试请求是否被成功从Kong转发到上游服务"></a>3.测试请求是否被成功从Kong转发到上游服务</h5><p>以下命令模拟一个get请求到Kong，如果配置正确，Kong应该将请求转发到<a href="http://mockbin.org" target="_blank" rel="noopener">http://mockbin.org</a>，如果你还记得，这是我们在创建服务的时候指定的上游服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X GET \</span><br><span class="line">  --url http://localhost:8000/ \</span><br><span class="line">--header <span class="string">'Host: example.com'</span></span><br></pre></td></tr></table></figure>
 <p>至此，我们已经建立了一个最简单的Kong实例，监听来自8000端口的请求，如果请求的header为example.com，Kong会转发到mockbin.org，再把响应返回给我们。</p>
 <h2 id="启用插件"><a href="#启用插件" class="headerlink" title="启用插件"></a>启用插件</h2><p>这里，我们要配置Kong插件，Kong的一个核心原则是通过插件扩展功能。</p>
 <p>接下来我们配置key-auth插件，用来进行身份验证。在添加此插件以前，所有的请求都会被代理到上游。启用此插件以后，只有携带正确API key的请求会被代理，借此可以保护上游服务。</p>
 <h5 id="1-为之前配置的服务增加key-auth插件"><a href="#1-为之前配置的服务增加key-auth插件" class="headerlink" title="1.为之前配置的服务增加key-auth插件"></a>1.为之前配置的服务增加key-auth插件</h5><p>输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X POST \</div><div class="line">  --url http://localhost:8001/services/example-service/plugins/ \</div><div class="line">--data <span class="string">'name=key-auth'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X POST \</span><br><span class="line">  --url http://localhost:8001/services/example-service/plugins/ \</span><br><span class="line">--data <span class="string">'name=key-auth'</span></span><br></pre></td></tr></table></figure>
 <p>这个插件也支持config.key_names参数，默认值是[‘apikey’]。这是一个包含apikey的headers和parameters名的列表。</p>
-<h5 id="2-验证插件已经正确配置"><a href="#2-验证插件已经正确配置" class="headerlink" title="2.    验证插件已经正确配置"></a>2.    验证插件已经正确配置</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -i -X GET \</div><div class="line">  --url http://localhost:8000/ \</div><div class="line">--header <span class="string">'Host: example.com'</span></div></pre></td></tr></table></figure>
+<h5 id="2-验证插件已经正确配置"><a href="#2-验证插件已经正确配置" class="headerlink" title="2.    验证插件已经正确配置"></a>2.    验证插件已经正确配置</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET \</span><br><span class="line">  --url http://localhost:8000/ \</span><br><span class="line">--header <span class="string">'Host: example.com'</span></span><br></pre></td></tr></table></figure>
 <p>因为还没有指定要求的apikey或者参数，响应应该是401 unauthorized：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 401 Unauthorized</div><div class="line">...</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"message"</span>: <span class="string">"No API key found in request"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 401 Unauthorized</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"message"</span>: <span class="string">"No API key found in request"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果想继续正常代理，就要为服务添加用户。</p>
 <h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><p>在此，我们为Kong实例添加一个用户，用户是使用你API的独立个体，可以被追踪，进行访问管理等。</p>
 <h5 id="1-使用RESTful创建用户"><a href="#1-使用RESTful创建用户" class="headerlink" title="1.    使用RESTful创建用户"></a>1.    使用RESTful创建用户</h5><p>假设我们的用户叫Jason</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X POST \</div><div class="line">  --url http://localhost:8001/consumers/ \</div><div class="line">--data <span class="string">"username=Jason"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X POST \</span><br><span class="line">  --url http://localhost:8001/consumers/ \</span><br><span class="line">--data <span class="string">"username=Jason"</span></span><br></pre></td></tr></table></figure>
 <p>你应该看到如下信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 201 Created</div><div class="line">Content-Type: application/json</div><div class="line">Connection: keep-alive</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"username"</span>: <span class="string">"Jason"</span>,</div><div class="line">  <span class="string">"created_at"</span>: 1428555626000,</div><div class="line">  <span class="string">"id"</span>: <span class="string">"bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 201 Created</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"username"</span>: <span class="string">"Jason"</span>,</span><br><span class="line">  <span class="string">"created_at"</span>: 1428555626000,</span><br><span class="line">  <span class="string">"id"</span>: <span class="string">"bbdf1c48-19dc-4ab7-cae0-ff4f59d87dc9"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="2-为你的用户设置key"><a href="#2-为你的用户设置key" class="headerlink" title="2.    为你的用户设置key"></a>2.    为你的用户设置key</h5><p>把ENTER_KEY_HERE替换为想要设置的Key</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X POST \</div><div class="line">  --url http://localhost:8001/consumers/Jason/key-auth/ \</div><div class="line">--data <span class="string">'key=ENTER_KEY_HERE'</span></div></pre></td></tr></table></figure>
-<h5 id="3-验证"><a href="#3-验证" class="headerlink" title="3.    验证"></a>3.    验证</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -i -X GET \</div><div class="line">  --url http://localhost:8000 \</div><div class="line">  --header <span class="string">"Host: example.com"</span> \</div><div class="line">--header <span class="string">"apikey: ENTER_KEY_HERE"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X POST \</span><br><span class="line">  --url http://localhost:8001/consumers/Jason/key-auth/ \</span><br><span class="line">--data <span class="string">'key=ENTER_KEY_HERE'</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-验证"><a href="#3-验证" class="headerlink" title="3.    验证"></a>3.    验证</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i -X GET \</span><br><span class="line">  --url http://localhost:8000 \</span><br><span class="line">  --header <span class="string">"Host: example.com"</span> \</span><br><span class="line">--header <span class="string">"apikey: ENTER_KEY_HERE"</span></span><br></pre></td></tr></table></figure>
 <p>至此，我们已经完整添加了一个带鉴权的服务。</p>
 
       
@@ -503,7 +603,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="文章原文地址"><a href="#文章原文地址" class="headerlink" title="文章原文地址"></a><a href="https://medium.com/coinmonks/everything-you-wanted-to-know-about-package-lock-json-b81911aa8ab8" target="_blank" rel="external">文章原文地址</a></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在npm升级到5.x.x以后，会自动在目录下生成一个名为Package-lock.json的文件。文件内容与package.json相似，但更为详细。虽然可以放任这个文件不管，但是时间长了就可能会出现依赖丢失或者安装错误版本依赖的情况。我们可以删除 package-lock.json 这个文件重新 npm install 。不过，这样似乎不妥。</p>
+        <h2 id="文章原文地址"><a href="#文章原文地址" class="headerlink" title="文章原文地址"></a><a href="https://medium.com/coinmonks/everything-you-wanted-to-know-about-package-lock-json-b81911aa8ab8" target="_blank" rel="noopener">文章原文地址</a></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在npm升级到5.x.x以后，会自动在目录下生成一个名为Package-lock.json的文件。文件内容与package.json相似，但更为详细。虽然可以放任这个文件不管，但是时间长了就可能会出现依赖丢失或者安装错误版本依赖的情况。我们可以删除 package-lock.json 这个文件重新 npm install 。不过，这样似乎不妥。</p>
 <h2 id="总体而言"><a href="#总体而言" class="headerlink" title="总体而言"></a>总体而言</h2><ul>
 <li>如果你使用的是npm ^5.x.x ，package-lock.json 文件会自动生成</li>
 <li>应该使用package-lock文件保证安装的一致性和依赖的兼容性</li>
@@ -519,7 +619,7 @@
 <p>比如我们创建了一个使用express的项目，在我使用 npm install express — save 安装的时候express的最新版本是4.15.4。那么^4.15.14 的版本号就被添加到package.json文件中。不过，express的维护者在明天修复了一个bug，最新的版本号变为^4.15.15。这时有人想为你的代码提供贡献，当他clone了你的代码，npm install的时候，因为express的最新版本变味了^4.15.15，他安装的依赖也成为了^4.15.15。理论上讲，这应该兼容，但是可能express的维护者在发布^4.15.15版本时改出了一个问题，那么你和你的代码贡献者使用的express将会不同。</p>
 <h3 id="Package-lock"><a href="#Package-lock" class="headerlink" title="Package-lock"></a>Package-lock</h3><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>package-lock 就是为了解决上述问题而生的。</p>
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>指定的版本，模块的地址（URL），模块的hash值，包的requires，包的依赖，这些组成了package-lock文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">"express": &#123;</div><div class="line">      "version": "4.15.4",</div><div class="line">      "resolved": "https://registry.npmjs.org/express/-/express-4.15.4.tgz",</div><div class="line">      "integrity": "sha1-Ay4iU0ic+PzgJma+yj0R7XotrtE=",</div><div class="line">      "requires": &#123;</div><div class="line">        "accepts": "1.3.3",</div><div class="line">        "array-flatten": "1.1.1",</div><div class="line">        "content-disposition": "0.5.2",</div><div class="line">        "content-type": "1.0.2",</div><div class="line">        "cookie": "0.3.1",</div><div class="line">        "cookie-signature": "1.0.6",</div><div class="line">        "debug": "2.6.8",</div><div class="line">        "depd": "1.1.1",</div><div class="line">        "encodeurl": "1.0.1",</div><div class="line">        "escape-html": "1.0.3",</div><div class="line">        "etag": "1.8.0",</div><div class="line">        "finalhandler": "1.0.4",</div><div class="line">        "fresh": "0.5.0",</div><div class="line">        "merge-descriptors": "1.0.1",</div><div class="line">        "methods": "1.1.2",</div><div class="line">        "on-finished": "2.3.0",</div><div class="line">        "parseurl": "1.3.1",</div><div class="line">        "path-to-regexp": "0.1.7",</div><div class="line">        "proxy-addr": "1.1.5",</div><div class="line">        "qs": "6.5.0",</div><div class="line">        "range-parser": "1.2.0",</div><div class="line">        "send": "0.15.4",</div><div class="line">        "serve-static": "1.12.4",</div><div class="line">        "setprototypeof": "1.0.3",</div><div class="line">        "statuses": "1.3.1",</div><div class="line">        "type-is": "1.6.15",</div><div class="line">        "utils-merge": "1.0.0",</div><div class="line">        "vary": "1.1.1"</div><div class="line">      &#125;</div><div class="line">    &#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">"express": &#123;</span><br><span class="line">      "version": "4.15.4",</span><br><span class="line">      "resolved": "https://registry.npmjs.org/express/-/express-4.15.4.tgz",</span><br><span class="line">      "integrity": "sha1-Ay4iU0ic+PzgJma+yj0R7XotrtE=",</span><br><span class="line">      "requires": &#123;</span><br><span class="line">        "accepts": "1.3.3",</span><br><span class="line">        "array-flatten": "1.1.1",</span><br><span class="line">        "content-disposition": "0.5.2",</span><br><span class="line">        "content-type": "1.0.2",</span><br><span class="line">        "cookie": "0.3.1",</span><br><span class="line">        "cookie-signature": "1.0.6",</span><br><span class="line">        "debug": "2.6.8",</span><br><span class="line">        "depd": "1.1.1",</span><br><span class="line">        "encodeurl": "1.0.1",</span><br><span class="line">        "escape-html": "1.0.3",</span><br><span class="line">        "etag": "1.8.0",</span><br><span class="line">        "finalhandler": "1.0.4",</span><br><span class="line">        "fresh": "0.5.0",</span><br><span class="line">        "merge-descriptors": "1.0.1",</span><br><span class="line">        "methods": "1.1.2",</span><br><span class="line">        "on-finished": "2.3.0",</span><br><span class="line">        "parseurl": "1.3.1",</span><br><span class="line">        "path-to-regexp": "0.1.7",</span><br><span class="line">        "proxy-addr": "1.1.5",</span><br><span class="line">        "qs": "6.5.0",</span><br><span class="line">        "range-parser": "1.2.0",</span><br><span class="line">        "send": "0.15.4",</span><br><span class="line">        "serve-static": "1.12.4",</span><br><span class="line">        "setprototypeof": "1.0.3",</span><br><span class="line">        "statuses": "1.3.1",</span><br><span class="line">        "type-is": "1.6.15",</span><br><span class="line">        "utils-merge": "1.0.0",</span><br><span class="line">        "vary": "1.1.1"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
 <p>同样，requires里的每个package都能找到入口信息。</p>
 <p>随后，人们不再使用package.json解决安装包，而是使用package-lock.json。因为它指定了所有需要的包的版本，包下载地址，哈希值。每次安装依赖的结果必然相同，无论何时何地。</p>
 <h2 id="争议的存在"><a href="#争议的存在" class="headerlink" title="争议的存在"></a>争议的存在</h2><p>虽然package-lock解决了一个普遍的问题，但是为什么还是有很多人推崇禁用它或者质疑它是否真的好用。</p>
@@ -728,10 +828,10 @@ float: right;
 <p> 建议：不推荐使用，如果你需要出现滚动条或者确保你的代码不会出现滚动条就使用吧。</p>
 </li>
 </ol>
-<h2 id="2-JS的继承方式"><a href="#2-JS的继承方式" class="headerlink" title="2. JS的继承方式"></a>2. JS的继承方式</h2><p><a href="https://segmentfault.com/a/1190000002440502" target="_blank" rel="external">JavaScript继承方式详解</a></p>
-<h2 id="3-请求中的超时处理"><a href="#3-请求中的超时处理" class="headerlink" title="3. 请求中的超时处理"></a>3. 请求中的超时处理</h2><h2 id="4-git基本操作"><a href="#4-git基本操作" class="headerlink" title="4. git基本操作"></a>4. git基本操作</h2><p><a href="http://www.runoob.com/git/git-basic-operations.html" target="_blank" rel="external">菜鸟教程git</a></p>
-<h2 id="5-html5-新特性"><a href="#5-html5-新特性" class="headerlink" title="5. html5 新特性"></a>5. html5 新特性</h2><p><a href="https://leohxj.gitbooks.io/front-end-database/html-and-css-basic/what-is-html5.html" target="_blank" rel="external">新增特性</a></p>
-<h2 id="6-CSS3-新特性"><a href="#6-CSS3-新特性" class="headerlink" title="6. CSS3 新特性"></a>6. CSS3 新特性</h2><p><a href="https://www.ibm.com/developerworks/cn/web/1202_zhouxiang_css3/index.html" target="_blank" rel="external">CSS3 新特性</a></p>
+<h2 id="2-JS的继承方式"><a href="#2-JS的继承方式" class="headerlink" title="2. JS的继承方式"></a>2. JS的继承方式</h2><p><a href="https://segmentfault.com/a/1190000002440502" target="_blank" rel="noopener">JavaScript继承方式详解</a></p>
+<h2 id="3-请求中的超时处理"><a href="#3-请求中的超时处理" class="headerlink" title="3. 请求中的超时处理"></a>3. 请求中的超时处理</h2><h2 id="4-git基本操作"><a href="#4-git基本操作" class="headerlink" title="4. git基本操作"></a>4. git基本操作</h2><p><a href="http://www.runoob.com/git/git-basic-operations.html" target="_blank" rel="noopener">菜鸟教程git</a></p>
+<h2 id="5-html5-新特性"><a href="#5-html5-新特性" class="headerlink" title="5. html5 新特性"></a>5. html5 新特性</h2><p><a href="https://leohxj.gitbooks.io/front-end-database/html-and-css-basic/what-is-html5.html" target="_blank" rel="noopener">新增特性</a></p>
+<h2 id="6-CSS3-新特性"><a href="#6-CSS3-新特性" class="headerlink" title="6. CSS3 新特性"></a>6. CSS3 新特性</h2><p><a href="https://www.ibm.com/developerworks/cn/web/1202_zhouxiang_css3/index.html" target="_blank" rel="noopener">CSS3 新特性</a></p>
 
       
 
@@ -805,7 +905,7 @@ float: right;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a><a href="http://www.boxgame.top/jumpman/" target="_blank" rel="external">在线地址</a></h3><p>一个用Matter.js完成的跳跃小游戏。无尽的路，永不停歇的跳跃。</p>
+        <h3 id="在线地址"><a href="#在线地址" class="headerlink" title="在线地址"></a><a href="http://www.boxgame.top/jumpman/" target="_blank" rel="noopener">在线地址</a></h3><p>一个用Matter.js完成的跳跃小游戏。无尽的路，永不停歇的跳跃。</p>
 <p><img src="http://ww1.sinaimg.cn/mw690/6535481cly1fop0awf1k3j21yy0ysn2d.jpg" alt="截图"></p>
 <p>利用matter.js引擎模拟了重力，使跳跃的动作更加真实。自己手动画了一些奔跑的动作，其实一共就只有4帧。js代码一共500行左右。</p>
 
@@ -1034,150 +1134,6 @@ console.log(3);
 
 
   
-    <article id="post-JS弹球小游戏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/01/JS弹球小游戏/">JS弹球小游戏</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/01/JS弹球小游戏/" class="archive-article-date">
-  	<time datetime="2018-02-01T02:52:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>不知道你有没有玩过这个打砖块的游戏，我模糊记得是在Windows 98上自带的游戏。</p>
-<p>在当时的我看来，画面极其科幻，游戏效果无与伦比。</p>
-<p>不过我谷歌了一圈也没发现与记忆里一模一样的画面，只找到了这个类似的游戏。</p>
-<p><img src="http://ww1.sinaimg.cn/large/6535481cly1fo0xe3iloqj20go09eteh.jpg" alt="image"></p>
-<p>想想那时一个弹球游戏就能玩上整整一天，守着大屁股的显示器，几个伙伴轮流操作，真是让人怀念的年代。</p>
-<p>只是当时太过年幼，不知这是何种难得的幸福。</p>
-<p>技术发展的脚步飞快，JavaScript似乎已经无所不能，索性就实现了一个类似的小游戏。</p>
-<p>虽然物理部分简单，但是既然已有非常完善的物理引擎，何不站在巨人的肩头呢？</p>
-<h2 id="matter-js"><a href="#matter-js" class="headerlink" title="matter.js"></a><a href="http://brm.io/matter-js/docs/index.html" target="_blank" rel="external">matter.js</a></h2><p>一个用JavaScript编写的2D刚体物理引擎。</p>
-<p>在引擎中添加世界，在世界中添加物体，启动引擎，一切就动了起来，是不是让人兴奋？</p>
-<p>可以添加多个世界，可以添加多个物体，物体可以组合，可以添加事件，可以使用自己的渲染器，可以添加插件，全部随心所欲。</p>
-<p><a href="http://brm.io/matter-js/demo/#airFriction" target="_blank" rel="external">这里是官方demo</a></p>
-<p>同所有的引擎一样，在使用前要了解一下概念，比如engine，即引擎。引擎控制着对世界的模拟更新。或者composite，即合成，是物体的集合。一个世界就是一个composite体。等等。</p>
-<p>介绍完了matter.js引擎，下面是游戏部分。</p>
-<p>为了让游戏变得更有意思一点，我让球球每隔一段时间随机改变方向和速度，带来出其不意的惊喜。</p>
-<p><a href="http://www.boxgame.top/pinball/" target="_blank" rel="external">游戏demo</a></p>
-<p><img src="http://ww1.sinaimg.cn/large/6535481cly1fo0xekjv13j21e60p1dgm.jpg" alt=""></p>
-<p>关键</p>
-<p>为了让球球持续运动，要使摩擦力，空气摩擦力，静摩擦力设置为0，为了能更好的反弹，要设置restitution（恢复力？）为1，同时密度要合适。</p>
-<p>为球体设置的属性这样：</p>
-<pre><code>density: 0.001,
-friction: 0,
-frictionStatic: 0,
-frictionAir: 0,
-restitution: 1
-</code></pre><p>墙体等属性主要是isStatic为true即可，目的是固定在空间上，否则会无限掉落。</p>
-<p>对于碰撞事件，我们要进行监听，实现消失，改变颜色，播放音效的功能。</p>
-<pre><code>/* 监控碰撞中事件 */
- Events.on(engine, &apos;collisionActive&apos;, function(event) {
-    let pairs = event.pairs;
-
-    for(let i = 0; i &lt; pairs.length; i++) {
-        let pair = pairs[i];
-        pair.bodyA.render.fillStyle = &apos;#42f4b6&apos;;
-        pair.bodyB.render.fillStyle = &apos;#41d9f4&apos;;
-    }
-
-    playSound();
-});
-</code></pre><p>操作物体可以在帧前或者帧后，这样才会从下一帧开始应用改变。</p>
-<pre><code>Events.on(engine, &apos;beforeUpdate&apos;, beforeUpdateEvent);
-
-function beforeUpdateEvent(event) {
-/* 球球的位置 */
-var position = ball.position;
-
-if(event.timestamp % 5100 &lt; 50 &amp;&amp; isMovingBall){
-
-    var positionX = position.x,
-        positionY = position.y;
-
-    /* 如果球球的速度小于13，给球球加速 */
-    if(ball.speed &lt; 20) {
-        Body.applyForce(ball, {x: positionX, y: positionY}, {x:  Math.random()/100, y: -Math.random()/100}); 
-        console.log(&apos;speed up&apos;);
-    }
-}
-
-/* 球离开区域，游戏失败 */
-if(position.y &gt;= 900) {
-        isMovingBall = false;
-        isOver = true;
-        Composite.remove(world, [box, ball]);
-        Events.off(engine, &apos;afterUpdate&apos;, afterUpdateEvent);
-        Events.off(engine, &apos;beforeUpdate&apos;, beforeUpdateEvent);
-          cover.style.backgroundColor = &apos;rgba(0,0,0,0.7)&apos;;
-    }
-}
-</code></pre><p>每次游戏结束为了让物体回归原位，从世界移除物体及监听的事件，重新添加。</p>
-<p>这样就完成了一个弹球小游戏。</p>
-<p>以上</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/01/JS弹球小游戏/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1193,7 +1149,7 @@ if(position.y &gt;= 900) {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -1279,6 +1235,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -1297,17 +1257,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

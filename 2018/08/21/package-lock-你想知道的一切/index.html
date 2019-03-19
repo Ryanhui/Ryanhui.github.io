@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>package-lock 你想知道的一切 | 惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,7 +15,8 @@
 <meta property="og:url" content="https://www.ryansky.cn/2018/08/21/package-lock-你想知道的一切/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="文章原文地址前言在npm升级到5.x.x以后，会自动在目录下生成一个名为Package-lock.json的文件。文件内容与package.json相似，但更为详细。虽然可以放任这个文件不管，但是时间长了就可能会出现依赖丢失或者安装错误版本依赖的情况。我们可以删除 package-lock.json 这个文件重新 npm install 。不过，这样似乎不妥。 总体而言 如果你使用的是npm ^5">
-<meta property="og:updated_time" content="2018-08-22T09:18:07.626Z">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-19T02:16:43.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="package-lock 你想知道的一切">
 <meta name="twitter:description" content="文章原文地址前言在npm升级到5.x.x以后，会自动在目录下生成一个名为Package-lock.json的文件。文件内容与package.json相似，但更为详细。虽然可以放任这个文件不管，但是时间长了就可能会出现依赖丢失或者安装错误版本依赖的情况。我们可以删除 package-lock.json 这个文件重新 npm install 。不过，这样似乎不妥。 总体而言 如果你使用的是npm ^5">
@@ -37,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -99,7 +100,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -243,7 +244,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="文章原文地址"><a href="#文章原文地址" class="headerlink" title="文章原文地址"></a><a href="https://medium.com/coinmonks/everything-you-wanted-to-know-about-package-lock-json-b81911aa8ab8" target="_blank" rel="external">文章原文地址</a></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在npm升级到5.x.x以后，会自动在目录下生成一个名为Package-lock.json的文件。文件内容与package.json相似，但更为详细。虽然可以放任这个文件不管，但是时间长了就可能会出现依赖丢失或者安装错误版本依赖的情况。我们可以删除 package-lock.json 这个文件重新 npm install 。不过，这样似乎不妥。</p>
+        <h2 id="文章原文地址"><a href="#文章原文地址" class="headerlink" title="文章原文地址"></a><a href="https://medium.com/coinmonks/everything-you-wanted-to-know-about-package-lock-json-b81911aa8ab8" target="_blank" rel="noopener">文章原文地址</a></h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在npm升级到5.x.x以后，会自动在目录下生成一个名为Package-lock.json的文件。文件内容与package.json相似，但更为详细。虽然可以放任这个文件不管，但是时间长了就可能会出现依赖丢失或者安装错误版本依赖的情况。我们可以删除 package-lock.json 这个文件重新 npm install 。不过，这样似乎不妥。</p>
 <h2 id="总体而言"><a href="#总体而言" class="headerlink" title="总体而言"></a>总体而言</h2><ul>
 <li>如果你使用的是npm ^5.x.x ，package-lock.json 文件会自动生成</li>
 <li>应该使用package-lock文件保证安装的一致性和依赖的兼容性</li>
@@ -259,7 +260,7 @@
 <p>比如我们创建了一个使用express的项目，在我使用 npm install express — save 安装的时候express的最新版本是4.15.4。那么^4.15.14 的版本号就被添加到package.json文件中。不过，express的维护者在明天修复了一个bug，最新的版本号变为^4.15.15。这时有人想为你的代码提供贡献，当他clone了你的代码，npm install的时候，因为express的最新版本变味了^4.15.15，他安装的依赖也成为了^4.15.15。理论上讲，这应该兼容，但是可能express的维护者在发布^4.15.15版本时改出了一个问题，那么你和你的代码贡献者使用的express将会不同。</p>
 <h3 id="Package-lock"><a href="#Package-lock" class="headerlink" title="Package-lock"></a>Package-lock</h3><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>package-lock 就是为了解决上述问题而生的。</p>
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>指定的版本，模块的地址（URL），模块的hash值，包的requires，包的依赖，这些组成了package-lock文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">"express": &#123;</div><div class="line">      "version": "4.15.4",</div><div class="line">      "resolved": "https://registry.npmjs.org/express/-/express-4.15.4.tgz",</div><div class="line">      "integrity": "sha1-Ay4iU0ic+PzgJma+yj0R7XotrtE=",</div><div class="line">      "requires": &#123;</div><div class="line">        "accepts": "1.3.3",</div><div class="line">        "array-flatten": "1.1.1",</div><div class="line">        "content-disposition": "0.5.2",</div><div class="line">        "content-type": "1.0.2",</div><div class="line">        "cookie": "0.3.1",</div><div class="line">        "cookie-signature": "1.0.6",</div><div class="line">        "debug": "2.6.8",</div><div class="line">        "depd": "1.1.1",</div><div class="line">        "encodeurl": "1.0.1",</div><div class="line">        "escape-html": "1.0.3",</div><div class="line">        "etag": "1.8.0",</div><div class="line">        "finalhandler": "1.0.4",</div><div class="line">        "fresh": "0.5.0",</div><div class="line">        "merge-descriptors": "1.0.1",</div><div class="line">        "methods": "1.1.2",</div><div class="line">        "on-finished": "2.3.0",</div><div class="line">        "parseurl": "1.3.1",</div><div class="line">        "path-to-regexp": "0.1.7",</div><div class="line">        "proxy-addr": "1.1.5",</div><div class="line">        "qs": "6.5.0",</div><div class="line">        "range-parser": "1.2.0",</div><div class="line">        "send": "0.15.4",</div><div class="line">        "serve-static": "1.12.4",</div><div class="line">        "setprototypeof": "1.0.3",</div><div class="line">        "statuses": "1.3.1",</div><div class="line">        "type-is": "1.6.15",</div><div class="line">        "utils-merge": "1.0.0",</div><div class="line">        "vary": "1.1.1"</div><div class="line">      &#125;</div><div class="line">    &#125;,</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">"express": &#123;</span><br><span class="line">      "version": "4.15.4",</span><br><span class="line">      "resolved": "https://registry.npmjs.org/express/-/express-4.15.4.tgz",</span><br><span class="line">      "integrity": "sha1-Ay4iU0ic+PzgJma+yj0R7XotrtE=",</span><br><span class="line">      "requires": &#123;</span><br><span class="line">        "accepts": "1.3.3",</span><br><span class="line">        "array-flatten": "1.1.1",</span><br><span class="line">        "content-disposition": "0.5.2",</span><br><span class="line">        "content-type": "1.0.2",</span><br><span class="line">        "cookie": "0.3.1",</span><br><span class="line">        "cookie-signature": "1.0.6",</span><br><span class="line">        "debug": "2.6.8",</span><br><span class="line">        "depd": "1.1.1",</span><br><span class="line">        "encodeurl": "1.0.1",</span><br><span class="line">        "escape-html": "1.0.3",</span><br><span class="line">        "etag": "1.8.0",</span><br><span class="line">        "finalhandler": "1.0.4",</span><br><span class="line">        "fresh": "0.5.0",</span><br><span class="line">        "merge-descriptors": "1.0.1",</span><br><span class="line">        "methods": "1.1.2",</span><br><span class="line">        "on-finished": "2.3.0",</span><br><span class="line">        "parseurl": "1.3.1",</span><br><span class="line">        "path-to-regexp": "0.1.7",</span><br><span class="line">        "proxy-addr": "1.1.5",</span><br><span class="line">        "qs": "6.5.0",</span><br><span class="line">        "range-parser": "1.2.0",</span><br><span class="line">        "send": "0.15.4",</span><br><span class="line">        "serve-static": "1.12.4",</span><br><span class="line">        "setprototypeof": "1.0.3",</span><br><span class="line">        "statuses": "1.3.1",</span><br><span class="line">        "type-is": "1.6.15",</span><br><span class="line">        "utils-merge": "1.0.0",</span><br><span class="line">        "vary": "1.1.1"</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
 <p>同样，requires里的每个package都能找到入口信息。</p>
 <p>随后，人们不再使用package.json解决安装包，而是使用package-lock.json。因为它指定了所有需要的包的版本，包下载地址，哈希值。每次安装依赖的结果必然相同，无论何时何地。</p>
 <h2 id="争议的存在"><a href="#争议的存在" class="headerlink" title="争议的存在"></a>争议的存在</h2><p>虽然package-lock解决了一个普遍的问题，但是为什么还是有很多人推崇禁用它或者质疑它是否真的好用。</p>
@@ -443,7 +444,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -529,6 +530,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -547,17 +552,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.ryansky.cn">
   <title>JS弹球小游戏 | 惠哲哲的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,9 +15,10 @@
 <meta property="og:url" content="https://www.ryansky.cn/2018/02/01/JS弹球小游戏/index.html">
 <meta property="og:site_name" content="惠哲哲的博客">
 <meta property="og:description" content="不知道你有没有玩过这个打砖块的游戏，我模糊记得是在Windows 98上自带的游戏。 在当时的我看来，画面极其科幻，游戏效果无与伦比。 不过我谷歌了一圈也没发现与记忆里一模一样的画面，只找到了这个类似的游戏。  想想那时一个弹球游戏就能玩上整整一天，守着大屁股的显示器，几个伙伴轮流操作，真是让人怀念的年代。 只是当时太过年幼，不知这是何种难得的幸福。 技术发展的脚步飞快，JavaScript似乎已">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/6535481cly1fo0xe3iloqj20go09eteh.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/6535481cly1fo0xekjv13j21e60p1dgm.jpg">
-<meta property="og:updated_time" content="2018-08-21T00:43:30.227Z">
+<meta property="og:updated_time" content="2019-03-19T02:16:43.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS弹球小游戏">
 <meta name="twitter:description" content="不知道你有没有玩过这个打砖块的游戏，我模糊记得是在Windows 98上自带的游戏。 在当时的我看来，画面极其科幻，游戏效果无与伦比。 不过我谷歌了一圈也没发现与记忆里一模一样的画面，只找到了这个类似的游戏。  想想那时一个弹球游戏就能玩上整整一天，守着大屁股的显示器，几个伙伴轮流操作，真是让人怀念的年代。 只是当时太过年幼，不知这是何种难得的幸福。 技术发展的脚步飞快，JavaScript似乎已">
@@ -40,7 +41,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -102,7 +103,7 @@
 		        
 			</div>
 		</nav>
-        <div class="aplayer" id="player1" ></div>
+        <div class="aplayer" id="player1"></div>
 	</header>	
 </div>
 
@@ -254,15 +255,15 @@
 <p>只是当时太过年幼，不知这是何种难得的幸福。</p>
 <p>技术发展的脚步飞快，JavaScript似乎已经无所不能，索性就实现了一个类似的小游戏。</p>
 <p>虽然物理部分简单，但是既然已有非常完善的物理引擎，何不站在巨人的肩头呢？</p>
-<h2 id="matter-js"><a href="#matter-js" class="headerlink" title="matter.js"></a><a href="http://brm.io/matter-js/docs/index.html" target="_blank" rel="external">matter.js</a></h2><p>一个用JavaScript编写的2D刚体物理引擎。</p>
+<h2 id="matter-js"><a href="#matter-js" class="headerlink" title="matter.js"></a><a href="http://brm.io/matter-js/docs/index.html" target="_blank" rel="noopener">matter.js</a></h2><p>一个用JavaScript编写的2D刚体物理引擎。</p>
 <p>在引擎中添加世界，在世界中添加物体，启动引擎，一切就动了起来，是不是让人兴奋？</p>
 <p>可以添加多个世界，可以添加多个物体，物体可以组合，可以添加事件，可以使用自己的渲染器，可以添加插件，全部随心所欲。</p>
-<p><a href="http://brm.io/matter-js/demo/#airFriction" target="_blank" rel="external">这里是官方demo</a></p>
+<p><a href="http://brm.io/matter-js/demo/#airFriction" target="_blank" rel="noopener">这里是官方demo</a></p>
 <p>同所有的引擎一样，在使用前要了解一下概念，比如engine，即引擎。引擎控制着对世界的模拟更新。或者composite，即合成，是物体的集合。一个世界就是一个composite体。等等。</p>
 <p>介绍完了matter.js引擎，下面是游戏部分。</p>
 <p>为了让游戏变得更有意思一点，我让球球每隔一段时间随机改变方向和速度，带来出其不意的惊喜。</p>
-<p><a href="http://www.boxgame.top/pinball/" target="_blank" rel="external">游戏demo</a></p>
-<p><img src="http://ww1.sinaimg.cn/large/6535481cly1fo0xekjv13j21e60p1dgm.jpg" alt=""></p>
+<p><a href="http://www.boxgame.top/pinball/" target="_blank" rel="noopener">游戏demo</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/6535481cly1fo0xekjv13j21e60p1dgm.jpg" alt></p>
 <p>关键</p>
 <p>为了让球球持续运动，要使摩擦力，空气摩擦力，静摩擦力设置为0，为了能更好的反弹，要设置restitution（恢复力？）为1，同时密度要合适。</p>
 <p>为球体设置的属性这样：</p>
@@ -492,7 +493,7 @@ if(position.y &gt;= 900) {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Ryan Hui </br>
+    		&copy; 2019 Ryan Hui <br>
         <span id="busuanzi_container_site_uv"> 
           本站访客数<span id="busuanzi_value_site_pv"></span>人次
         </span>
@@ -578,6 +579,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
@@ -596,17 +601,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">笔记本本</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分享 算法</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
